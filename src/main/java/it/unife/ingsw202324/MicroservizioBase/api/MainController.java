@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
-@RequestMapping("/api")
+@RestController /* Annotation per definire che la classe risponderà tramite rest  */
+@RequestMapping("/api") /* Annotation per definire il path della classe  */
 public class MainController {
     @Autowired
     MyService myService;
-    @RequestMapping("/hello")
+    @RequestMapping("/hello") /* Annotation per definire il path del metodo (relativo alla classe)  */
     public List<MyTable> hello() {
         /* In attesa di una connessione db
         return myService.getAll();
          */
 
-
+        /* Chiamata a un servizio che ritorna dati da DB H2 */
         List<MyTable> myServiceMock =  myService.getMock();
         return myServiceMock;
     }

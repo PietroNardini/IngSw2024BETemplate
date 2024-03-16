@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController /* Annotation per definire che la classe risponderà tramite rest  */
@@ -14,15 +13,15 @@ import java.util.List;
 public class MainController {
     @Autowired
     MyService myService;
-    @RequestMapping("/hello") /* Annotation per definire il path del metodo (relativo alla classe)  */
-    public List<MyTable> hello() {
-        /* In attesa di una connessione db
+    @RequestMapping("/testMysql") /* Annotation per definire il path del metodo (relativo alla classe)  */
+    public List<MyTable> testMysql() {
         return myService.getAll();
-         */
-
-        /* Chiamata a un servizio che ritorna dati da DB H2 */
-        List<MyTable> myServiceMock =  myService.getMock();
-        return myServiceMock;
     }
 
+    @RequestMapping("/testWithElements") /* Annotation per definire il path del metodo (relativo alla classe)  */
+    public List<MyTable> addElements() {
+
+        /* Chiamata a un servizio che ritorna inserisce 3 dati e ritorna il db */
+        return myService.addElements();
+    }
 }

@@ -1,4 +1,5 @@
 package it.unife.ingsw202324.MicroservizioBase.api;
+import it.unife.ingsw202324.MicroservizioBase.services.Response;
 
 import it.unife.ingsw202324.MicroservizioBase.models.MyTable;
 import it.unife.ingsw202324.MicroservizioBase.services.MyService;
@@ -25,9 +26,20 @@ public class MainController {
         /* Chiamata a un servizio che ritorna inserisce 3 dati e ritorna il db */
         return myService.addElements();
     }
-
+    @RequestMapping("/testInsert")
+    public String testInsert() {
+        myService.insert(new MyTable(null, "Inserted via API"));
+        return "Inserted successfully!";
+    }
+    
     @RequestMapping("/callREST") /* Annotation per definire il path del metodo (relativo alla classe)  */
     public String callRest() {
-        return TemplateRestConsumer.callREST("helloMock", null, true);
+        Response res=TemplateRestConsumer.callREST("helloMock", null, true);
+        Long id=Long.valueOf(res.getId());
+        String description=res.getDescription();
+        myService.insert(new MyTable(id, description));
+        return "Inserted successfully!";
+
+    
     }
 }

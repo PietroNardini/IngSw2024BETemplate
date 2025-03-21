@@ -27,9 +27,7 @@ public class MyService {
     public List<MyTable> addElements() {
         this.insert(new MyTable(1L, "Test 1"));
         this.insert(new MyTable(2L, "Test 2"));
-        this.insert(new MyTable(3L, "Test 3"));
+        this.insert(new MyTable(4L, "Test 4"));
         return this.getAll();
     }
-
-
 }
